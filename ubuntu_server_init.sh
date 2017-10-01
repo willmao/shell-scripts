@@ -27,13 +27,16 @@ then
 fi
 
 # install docker-engine
-if !(docker -v > /dev/null)
+if !(which docker 1>&2 >/dev/null)
 then
+  echo 'begin to install docker-engine'
   curl -sSL https://get.daocloud.io/docker | sh # use script from daocloud to install docker-engine
+  usermod -aG docker $(whoami)
 fi
 
-if !(docker-compose -v > /dev/null)
+if !(which docker-compose 1>&2 >/dev/null)
 then
+  echo 'begin to install docker-engine'
   curl -L https://get.daocloud.io/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose | sh # use script from daocloud to install docker-engine
   chmod +x /usr/local/bin/docker-compose
 fi
