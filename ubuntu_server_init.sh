@@ -12,7 +12,6 @@
 # enable tcp fastopen feature
 if !(grep 'net.ipv4.tcp_fastopen=3' /etc/sysctl.conf > /dev/null)
 then
-  echo 3 > /proc/sys/net/ipv4/tcp_fastopen
   echo 'net.ipv4.tcp_fastopen=3' >> /etc/sysctl.conf
 fi
 
